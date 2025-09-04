@@ -3,6 +3,7 @@ cd = 'pip install python-telegram-bot, pyTelegramBotAPI,aiogram'
 import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 from secret import secrets
 
@@ -14,15 +15,20 @@ TELEGRAM_TOKEN = secrets['BOT_API_TOKEN']
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher()
 
+
+
 # Обработчик команды /start
+
+start_kb = ReplyKeyboardMarkup(keyboard=[[KeyboardButton(text="Старт")]],resize_keyboard=True)
+
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
-    await message.answer("Привет! Я простой бот на aiogram 🤖")
+    await message.answer("Добро пожаловать!", reply_markup=start_kb)
 
 # Обработчик любого текстового сообщения
-@dp.message()
+'''@dp.message()
 async def echo(message: types.Message):
-    await message.answer(f"Ты написал: {message.text}")
+    await message.answer(f"Ты написал: {message.text}")'''
 
 # ==== ЗАПУСК ====
 async def main():
