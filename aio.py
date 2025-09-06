@@ -47,10 +47,6 @@ async def handle_messages(message: types.Message):
     
     elif message.text == "Пробив":
             await message.answer("Дай данные")
-
-    
-    
-
     else:
         await message.answer(f"Ты написал: {message.text}")
 
