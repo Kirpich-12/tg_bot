@@ -2,34 +2,26 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, FSInputFile 
+import schedule
 
 from secret import secrets
 
-
 # ==== НАСТРОЙКИ ====
 TELEGRAM_TOKEN = secrets['BOT_API_TOKEN']
+CHAT_ID = secrets['CHAT_ID']   # добавлено
+
 
 # Создаём экземпляры бота и диспетчера
 bot = Bot(token=TELEGRAM_TOKEN)
 dp = Dispatcher()
 
-async def daily_message():
-    while True:
-        now = datetime.now()
-        target = datetime.combine(now.date(), datetime.strptime("21:50", "%H:%M").time())
-
-        if target < now:
-            target += timedelta(days=1)
-
-        delay = (target - now).total_seconds()
-        await asyncio.sleep(delay)
-
-        await bot.send_message(CHAT_ID, "Выходим на поверку")
-
-
+def daily_message():
+    bot.send_message(chat_id=CHAT_ID,text='КУку')
+    
 # ==== ЗАПУСК ====
+schedule.every().day.at('11:33').do(daily_message())
 async def main():
-    print('Бот запущен...')
+    print('Бот запущен...') 
     await dp.start_polling(bot)
 
 if __name__ == "__main__":

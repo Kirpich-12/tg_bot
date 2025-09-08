@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, FSInputFile 
 
+
 from secret import secrets
 
 
@@ -28,7 +29,7 @@ async def handle_messages(message: types.Message):
         await message.answer("Старт", reply_markup=choice_kb)
 
     elif message.text == "Видик":
-        await message.answer('@vid Мерс в номинации «Мертвец Года»')
+        await message.answer('https://www.youtube.com/watch?v=Pt0DktW4rGQ')
 
 # ==== ЗАПУСК ====
 async def main():
