@@ -4,3 +4,7 @@
 2.2. радомныый лох
 2.3 антибот
 2.4 антиспам(>10 сооб/мин мут на 5 мин)
+
+I7WZKPTZ237K0V77
+
+id, id users, button, date, time, answer 
